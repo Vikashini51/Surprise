@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(45deg,#ff758c,#ff7eb3);
+color:white;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#countdown{
+font-size:60px;
+margin-bottom:20px;
+}
+
+video{
+display:none;
+width:100%;
+max-width:500px;
+border-radius:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎉 A Surprise is Coming 🎁</h1>
+
+<div id="countdown">5</div>
+
+<video id="introVideo">
+<source src="sowv1.mp4" type="video/mp4">
+</video>
+
+<script>
+
+let time = 5;
+let countdown = document.getElementById("countdown");
+let video = document.getElementById("introVideo");
+
+let timer = setInterval(function(){
+
+time--;
+countdown.innerText = time;
+
+if(time == 0){
+
+clearInterval(timer);
+
+countdown.style.display = "none";
+
+video.style.display = "block";
+
+video.play();
+
+}
+
+},1000);
+
+
+/* When video ends open index page */
+
+video.onended = function(){
+
+window.location.href = "index.html";
+
+};
+
+</script>
+
+</body>
+</html>

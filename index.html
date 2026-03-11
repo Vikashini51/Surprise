@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(45deg,#ff758c,#ff7eb3);
+color:white;
+overflow-x:hidden;
+}
+
+/* Show content normally */
+
+#content{
+display:block;
+}
+
+/* Photo gallery */
+
+.gallery img{
+width:100px;
+height:150px;
+object-fit:cover;
+margin:10px;
+border-radius:12px;
+}
+
+.gallery1 img{
+width:150px;
+height:100px;
+object-fit:cover;
+margin:10px;
+border-radius:12px;
+}
+
+/* Falling hearts */
+
+.heart{
+position:absolute;
+top:-50px;
+font-size:30px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh);
+}
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+</style>
+
+<script>
+
+let music;
+
+/* Hearts animation */
+
+function createHearts(){
+
+setInterval(function(){
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"%";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+},400);
+
+}
+
+/* Run when page loads */
+
+window.onload=function(){
+
+createHearts();
+
+music=document.getElementById("music");
+
+/* restore saved time */
+
+let savedTime=localStorage.getItem("musicTime");
+
+if(savedTime){
+music.currentTime=savedTime;
+}
+
+/* restore play state */
+
+let isPlaying=localStorage.getItem("musicPlaying");
+
+if(isPlaying==="true"){
+music.play();
+document.getElementById("musicBtn").innerText="Pause Music ⏸";
+}
+
+};
+
+/* Play / Pause button */
+
+function toggleMusic(){
+
+if(music.paused){
+
+music.play();
+localStorage.setItem("musicPlaying","true");
+document.getElementById("musicBtn").innerText="Pause Music ⏸";
+
+}else{
+
+music.pause();
+localStorage.setItem("musicPlaying","false");
+document.getElementById("musicBtn").innerText="Play Music 🎵";
+
+}
+
+}
+
+/* Save time before leaving page */
+
+window.onbeforeunload=function(){
+
+localStorage.setItem("musicTime",music.currentTime);
+
+};
+
+</script>
+
+</head>
+
+<body>
+
+<div id="content">
+
+<h1>🎉 Happy Birthday 🎂</h1>
+
+<h2>Sowww ❤️</h2>
+
+<p>Wishing you the most amazing birthday ever 🎉</p>
+
+<!-- Music -->
+
+<button onclick="toggleMusic()" id="musicBtn">Play Music 🎵</button>
+
+<br><br>
+
+<audio id="music" loop>
+<source src="sowa.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Photo Gallery -->
+
+<div class="gallery">
+<img src="sow1.jpeg">
+<img src="sow2.jpeg">
+</div>
+
+<div class="gallery1">
+<img src="sow3.jpeg">
+</div>
+
+<!-- Secret Gift -->
+
+<h2>🎁 Secret Gift</h2>
+<p>I have a secret surprise for you!</p>
+
+<a href="secret.html">
+<button>Open Secret Gift 🎁</button>
+</a>
+
+<!-- Puzzle Game -->
+
+<h2>Birthday Puzzle Game 🧩</h2>
+<p>Solve the puzzle to unlock the surprise!</p>
+
+<a href="puzzle.html">
+<button>Start Puzzle</button>
+</a>
+
+</div>
+
+</body>
+</html>

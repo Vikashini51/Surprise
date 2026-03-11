@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Special Video</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+body{
+text-align:center;
+font-family:Arial;
+background:linear-gradient(45deg,#ff758c,#ff7eb3);
+color:white;
+padding:20px;
+}
+
+video{
+width:100%;
+max-width:500px;
+border-radius:10px;
+margin-top:20px;
+}
+
+button{
+margin-top:25px;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+}
+
+#finalMessage{
+display:none;
+margin-top:40px;
+font-size:28px;
+color:yellow;
+}
+
+.firework{
+position:fixed;
+font-size:35px;
+animation:explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(0);}
+100%{transform:scale(3);opacity:0;}
+}
+
+</style>
+<script>
+
+window.onload=function(){
+
+let video=document.querySelector("video");
+
+video.onended=function(){
+
+document.getElementById("finalMessage").style.display="block";
+
+startFireworks();
+
+};
+
+};
+
+function startFireworks(){
+
+setInterval(function(){
+
+let fire=document.createElement("div");
+
+fire.className="firework";
+
+let emojis=["🎆","✨","🎇","💥"];
+
+fire.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+fire.style.left=Math.random()*100+"%";
+fire.style.top=Math.random()*100+"%";
+
+document.body.appendChild(fire);
+
+setTimeout(()=>fire.remove(),1000);
+
+},200);
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h2>One Simple Surprise 🎥</h2>
+
+<video controls autoplay>
+<source src="sowv.mp4" type="video/mp4">
+</video>
+
+<br>
+
+<div id="finalMessage">
+<h1>🎉 Once again Happyyy Birthdayyy Sowww ❤️</h1>
+<p>Thank you for being part of my life💖</p>
+<p>I really mis our those memorable days.You will always very close to my heart🫂🫂🫂</p>
+</div>
+
+<a href="index.html">
+<button>Go Back</button>
+</a>
+
+</body>
+</html>

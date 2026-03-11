@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+text-align:center;
+font-family:Arial;
+background:linear-gradient(45deg,#ff758c,#ff7eb3);
+color:white;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#gift{
+font-size:120px;
+cursor:pointer;
+transition:transform 0.3s;
+}
+
+#gift:hover{
+transform:scale(1.2);
+}
+
+#countdown{
+font-size:60px;
+margin-top:20px;
+display:none;
+}
+
+</style>
+
+<script>
+
+function openGift(){
+
+document.getElementById("gift").style.display="none";
+
+let countdown=document.getElementById("countdown");
+countdown.style.display="block";
+
+let count=3;
+
+countdown.innerHTML=count;
+
+let timer=setInterval(function(){
+
+count--;
+countdown.innerHTML=count;
+
+if(count==0){
+
+clearInterval(timer);
+
+countdown.innerHTML="🎉";
+
+setTimeout(function(){
+window.location.href="start.html";
+},800);
+
+}
+
+},1000);
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Someone Sent You a Surprise 🎁</h1>
+
+<p>Click the gift to open it</p>
+
+<div id="gift" onclick="openGift()">🎁</div>
+
+<div id="countdown"></div>
+
+</body>
+</html>
