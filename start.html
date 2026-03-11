@@ -11,26 +11,22 @@
 body{
 margin:0;
 font-family:Arial;
-text-align:center;
 background:linear-gradient(45deg,#ff758c,#ff7eb3);
-color:white;
-height:100vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+height:100vh;
 }
 
-#countdown{
-font-size:60px;
-margin-bottom:20px;
-}
+/* Mobile friendly video */
 
 video{
-display:none;
-width:100%;
-max-width:500px;
-border-radius:12px;
+width:90%;
+max-width:400px;
+max-height:80vh;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+object-fit:cover;
 }
 
 </style>
@@ -39,46 +35,18 @@ border-radius:12px;
 
 <body>
 
-<h1>🎉 A Surprise is Coming 🎁</h1>
-
-<div id="countdown">5</div>
-
-<video id="introVideo">
+<video id="introVideo" controls autoplay>
 <source src="sowv1.mp4" type="video/mp4">
 </video>
 
 <script>
 
-let time = 5;
-let countdown = document.getElementById("countdown");
 let video = document.getElementById("introVideo");
 
-let timer = setInterval(function(){
-
-time--;
-countdown.innerText = time;
-
-if(time == 0){
-
-clearInterval(timer);
-
-countdown.style.display = "none";
-
-video.style.display = "block";
-
-video.play();
-
-}
-
-},1000);
-
-
-/* When video ends open index page */
+/* After video ends open index page */
 
 video.onended = function(){
-
 window.location.href = "index.html";
-
 };
 
 </script>
